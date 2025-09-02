@@ -14,3 +14,10 @@ class CPUCollector(object):
         for mode, usage_seconds in psutil.cpu_times()._asdict().items():
             c.add_metric([mode], usage_seconds)
         yield c
+
+REGISTRY.register(CPUCollector())
+
+if __name__ == '__main__':
+    start_http_server(8000)
+    while True:
+        time.sleep(1)
